@@ -955,4 +955,4 @@
 	// import global scope
 	window._f = funLib;
 
-})();
+})(); 
