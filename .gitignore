@@ -1,0 +1,5 @@
+# IntelliJ project files
+.idea
+*.iml
+*.txt
+# Created by .ignore support plugin (hsz.mobi)
