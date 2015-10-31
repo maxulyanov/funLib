@@ -1,38 +1,38 @@
+;
+(function () {
 
-;(function() {
+  'use strict';
 
-	'use strict';
-
-	// lib global varables
-	var funLib = {
+  // lib global varables
+  var funLib = {
     shortName: function () {
       /** @namespace window._f */
       var _f = window._f;
-			for(var item in _f) {
-				var firstLetter = item.slice(0, 1);
-				_f[firstLetter] = _f[item];
-			}
-		}
-	};
+      for (var item in _f) {
+        var firstLetter = item.slice(0, 1);
+        _f[firstLetter] = _f[item];
+      }
+    }
+  };
 
 
-	// lib global functions
-	function isNumeric(num, notNegative) {
-		var resultNumber = !isNaN(parseFloat(num)) && isFinite(num);
-		if(resultNumber && notNegative) {
-			return onlyPositive(num);
-		}
-		return resultNumber;
+  // lib global functions
+  function isNumeric(num, notNegative) {
+    var resultNumber = !isNaN(parseFloat(num)) && isFinite(num);
+    if (resultNumber && notNegative) {
+      return onlyPositive(num);
+    }
+    return resultNumber;
   }
 
   function onlyPositive(num) {
-		return num >= 0;
+    return num >= 0;
   }
 
 
-
   // string methods
-  var string = function () {};
+  var string = function () {
+  };
 
   /**
    *
@@ -116,9 +116,9 @@
   };
 
 
-
   // object methods
-  var object = function () {};
+  var object = function () {
+  };
 
   /**
    *
@@ -127,14 +127,14 @@
    * @param callback
    * @returns {boolean}
    */
-  object.watch = function(object, properties, callback) {
+  object.watch = function (object, properties, callback) {
     if (!properties && Object.keys(object).length > 0) {
       return false;
     }
 
-    if(properties === true) {
+    if (properties === true) {
       var propertiesI = [];
-      for(var key in object) {
+      for (var key in object) {
         propertiesI.push(key);
       }
     }
@@ -174,92 +174,93 @@
   };
 
 
-	// array methods
-	var array = function () {};
+  // array methods
+  var array = function () {
+  };
 
-	/**
-	 *
-	 * @param array
-	 * @returns {Array}
-	 */
-	array.uniq = function (array) {
-		var result = [];
+  /**
+   *
+   * @param array
+   * @returns {Array}
+   */
+  array.uniq = function (array) {
+    var result = [];
 
-		nextIter:
-			for (var i = 0; i < array.length; i++) {
-				if (result.length == 0) {
-					result.push(array[i]);
-				}
-				for (var j = 0; j < result.length; j++) {
-					if (array[i] == result[j]) continue nextIter;
-				}
-				result.push(array[i]);
-			}
+    nextIter:
+        for (var i = 0; i < array.length; i++) {
+          if (result.length == 0) {
+            result.push(array[i]);
+          }
+          for (var j = 0; j < result.length; j++) {
+            if (array[i] == result[j]) continue nextIter;
+          }
+          result.push(array[i]);
+        }
 
-		return result;
+    return result;
 
-	};
+  };
 
-	/**
-	 *
-	 * @param array
-	 * @param types
-	 * @returns {*}
-	 */
-	array.types = function (array, types) {
-		if (!array)
-			return false;
+  /**
+   *
+   * @param array
+   * @param types
+   * @returns {*}
+   */
+  array.types = function (array, types) {
+    if (!array)
+      return false;
 
-		if (!types)
-			return array;
+    if (!types)
+      return array;
 
 
-		var result = [];
-		if(!Array.isArray(array)) {
-			array = [array];
-		}
+    var result = [];
+    if (!Array.isArray(array)) {
+      array = [array];
+    }
 
-		if (Array.isArray(types)) {
-      array.forEach(function(item) {
-        types.forEach(function(type) {
+    if (Array.isArray(types)) {
+      array.forEach(function (item) {
+        types.forEach(function (type) {
           if (typeof item === type) {
             result.push(item);
           }
         });
       });
-		}
-		else {
-      array.forEach(function(item) {
+    }
+    else {
+      array.forEach(function (item) {
         if (typeof item == types) {
           result.push(item);
         }
       });
-		}
+    }
 
-		return result;
+    return result;
 
-	};
+  };
 
-	/**
-	 *
-	 * @param array
-	 * @returns {*}
-	 */
-	array.clear = function (array) {
-		if (!array)
-			return false;
+  /**
+   *
+   * @param array
+   * @returns {*}
+   */
+  array.clear = function (array) {
+    if (!array)
+      return false;
 
-		var result = [];
+    var result = [];
 
-    array.forEach(function(item) {
+    array.forEach(function (item) {
       if (item) {
         result.push(item);
       }
     });
 
-		return result;
+    return result;
 
-	};
+  };
 
   /**
    *
@@ -468,7 +469,7 @@
     var storage = [];
     var count = 0;
 
-    array.forEach(function(item, i) {
+    array.forEach(function (item, i) {
       storage.push(item);
       count++;
 
@@ -644,63 +645,63 @@
   };
 
   /**
-	 *
-	 * @param array
-	 * @param count
-	 * @returns {*}
-	 */
-	array.first = function (array, count) {
-		if (!array)
-			return false;
+   *
+   * @param array
+   * @param count
+   * @returns {*}
+   */
+  array.first = function (array, count) {
+    if (!array)
+      return false;
 
-		count = count || 0;
-		var result = [];
+    count = count || 0;
+    var result = [];
 
-		if (count >= 1) {
-			for (var i = 0; i < count; i++) {
-				result.push(array[i]);
-			}
-			return result;
-		}
+    if (count >= 1) {
+      for (var i = 0; i < count; i++) {
+        result.push(array[i]);
+      }
+      return result;
+    }
 
-		return array[0];
+    return array[0];
 
-	};
+  };
 
-	/**
-	 *
-	 * @param array
-	 * @param count
-	 * @returns {*}
-	 */
-	array.last = function (array, count) {
-		if (!array)
-			return false;
+  /**
+   *
+   * @param array
+   * @param count
+   * @returns {*}
+   */
+  array.last = function (array, count) {
+    if (!array)
+      return false;
 
-		count = count || 1;
+    count = count || 1;
 
-		if (count > 1) {
-			var copyArr = this.clone(array);
-			return copyArr.splice(copyArr.length - count);
-		}
+    if (count > 1) {
+      var copyArr = this.clone(array);
+      return copyArr.splice(copyArr.length - count);
+    }
 
-		return array[array.length - 1];
+    return array[array.length - 1];
 
-	};
+  };
 
-	/**
-	 *
-	 * @param array
-	 * @param index
-	 * @returns {*}
-	 */
-	array.rest = function (array, index) {
-		if (!array)
-			return false;
+  /**
+   *
+   * @param array
+   * @param index
+   * @returns {*}
+   */
+  array.rest = function (array, index) {
+    if (!array)
+      return false;
 
-		return (array.length - 1) - index;
+    return (array.length - 1) - index;
 
-	};
+  };
 
   /**
    *
@@ -719,35 +720,35 @@
 
   };
 
-	/**
-	 *
-	 * @param array
-	 * @param step
-	 * @returns {*}
-	 */
-	array.nthChild = function (array, step) {
-		if (!array)
-			return false;
+  /**
+   *
+   * @param array
+   * @param step
+   * @returns {*}
+   */
+  array.nthChild = function (array, step) {
+    if (!array)
+      return false;
 
-		var result = [];
-		if (typeof step === 'string') {
-			var typeStep = step == 'even' ? true : false;
+    var result = [];
+    if (typeof step === 'string') {
+      var typeStep = step == 'even' ? true : false;
       array.forEach(function (item, i) {
         var thisIteration = (i + 1) % 2 === 0;
         if (typeStep === thisIteration) {
           result.push(item);
         }
       });
-		}
-		else {
-			for (var i = step - 1; i < array.length; i += step) {
-				result.push(array[i])
-			}
-		}
+    }
+    else {
+      for (var i = step - 1; i < array.length; i += step) {
+        result.push(array[i])
+      }
+    }
 
-		return result;
+    return result;
 
-	};
+  };
 
   /**
    *
@@ -767,7 +768,7 @@
     if (numbers[1] === undefined)
       numbers[1] = Infinity;
 
-    array.forEach(function(item) {
+    array.forEach(function (item) {
       if (numbers[0] <= item && numbers[1] >= item) {
         result.push(item)
       }
@@ -805,12 +806,12 @@
 
   };
 
-	/**
-	 *
-	 * @param array
-	 * @param notNegative
-	 * @returns {*}
-	 */
+  /**
+   *
+   * @param array
+   * @param notNegative
+   * @returns {*}
+   */
   array.min = function (array, notNegative) {
     if (!array)
       return false;
@@ -854,13 +855,13 @@
 
   };
 
-	/**
-	 *
-	 * @param start
-	 * @param end
-	 * @param step
-	 * @returns {*}
-	 */
+  /**
+   *
+   * @param start
+   * @param end
+   * @param step
+   * @returns {*}
+   */
   array.createRange = function (start, end, step) {
 
     if (!isNumeric(start)) {
@@ -906,7 +907,7 @@
         if (Array.isArray(array)) {
           var copy = array.slice(0);
           var copyObj = {};
-          copy.forEach(function(item, i) {
+          copy.forEach(function (item, i) {
             copyObj[i] = deepCopy(item);
           });
           return copyObj;
@@ -918,7 +919,7 @@
       })(array);
     }
     else {
-      array.forEach(function(item, i) {
+      array.forEach(function (item, i) {
         result[i] = item;
       })
     }
@@ -938,7 +939,7 @@
       return false;
 
     var result = {};
-    keys.forEach(function(item, i) {
+    keys.forEach(function (item, i) {
       result[item] = values[i];
     });
 
@@ -947,12 +948,12 @@
   };
 
 
-	// gathering objects
-	funLib.object = object;
-	funLib.array = array;
+  // gathering objects
+  funLib.object = object;
+  funLib.array = array;
   funLib.string = string;
 
-	// import global scope
-	window._f = funLib;
+  // import global scope
+  window._f = funLib;
 
 })(); 
